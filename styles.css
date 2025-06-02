@@ -1,0 +1,254 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(120deg, #ff5252 0%, #fda085 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    font-size: 16px;
+}
+
+.container {
+    background: white;
+    padding: clamp(1rem, 3vw, 2rem);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: min(95%, 500px);
+    margin: 1rem auto;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: clamp(1rem, 3vw, 1.5rem);
+    font-size: clamp(1.3rem, 4vw, 2rem);
+    line-height: 1.2;
+}
+
+.todo-input {
+    display: flex;
+    gap: clamp(0.3rem, 2vw, 0.5rem);
+    margin-bottom: clamp(1rem, 3vw, 1.5rem);
+    flex-wrap: wrap;
+}
+
+input[type="text"] {
+    flex: 1;
+    min-width: 200px;
+    padding: clamp(0.6rem, 2vw, 0.8rem);
+    border: 2px solid #eee;
+    border-radius: 5px;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #fda085;
+}
+
+button {
+    padding: clamp(0.6rem, 2vw, 0.8rem) clamp(1rem, 3vw, 1.5rem);
+    background: #fda085;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    min-width: max-content;
+}
+
+button:hover {
+    background: #f6d365;
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.todo-list {
+    list-style: none;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.todo-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.todo-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.todo-list::-webkit-scrollbar-thumb {
+    background: #fda085;
+    border-radius: 3px;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    padding: clamp(0.6rem, 2vw, 1rem);
+    background: #f8f9fa;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    animation: slideIn 0.3s ease;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    transition: transform 0.2s ease;
+}
+
+.todo-item:hover {
+    transform: translateX(5px);
+}
+
+.todo-item.completed {
+    opacity: 0.7;
+}
+
+.todo-item.completed span {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.todo-item span {
+    flex: 1;
+    margin: 0 1rem;
+    word-break: break-word;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    line-height: 1.4;
+}
+
+.delete-btn {
+    background: #ff6b6b;
+    padding: clamp(0.4rem, 1.5vw, 0.5rem);
+    font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+}
+
+.delete-btn:hover {
+    background: #ff5252;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 0.5rem;
+    }
+
+    .container {
+        width: 98%;
+        margin: 0.5rem auto;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .todo-input {
+        flex-direction: column;
+    }
+
+    input[type="text"] {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .todo-item {
+        padding: 0.8rem;
+    }
+
+    .todo-item span {
+        margin: 0.5rem 0;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 0.8rem;
+    }
+
+    h1 {
+        font-size: 1.3rem;
+    }
+
+    .todo-item {
+        padding: 0.6rem;
+    }
+
+    .todo-list {
+        max-height: 50vh;
+    }
+}
+
+/* Landscape Mode */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    body {
+        align-items: flex-start;
+    }
+
+    .container {
+        margin: 1rem auto;
+    }
+
+    .todo-list {
+        max-height: 40vh;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .container {
+        background: #1a1a1a;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+        color: #fff;
+    }
+
+    input[type="text"] {
+        background: #2d2d2d;
+        border-color: #404040;
+        color: #fff;
+    }
+
+    .todo-item {
+        background: #2d2d2d;
+    }
+
+    .todo-item span {
+        color: #fff;
+    }
+
+    .todo-item.completed span {
+        color: #888;
+    }
+} 
